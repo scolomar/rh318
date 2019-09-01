@@ -1,0 +1,17 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     dns.example.net. root.dns.example.net. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+        IN      NS      dns.example.net.
+dns     IN      A       192.168.1.10
+dhcp    IN      A       192.168.1.20
+manager IN      A       192.168.1.30
+host1   IN      A       192.168.1.40
+host2   IN      A       192.168.1.50
