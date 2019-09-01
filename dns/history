@@ -1,0 +1,2 @@
+sudo apt-get install --yes bind9
+sudo chattr +i /etc/resolv.conf
