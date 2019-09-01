@@ -1,2 +1,2 @@
-sudo apt-get install --yes bind9
+sudo apt-get install --yes bind9 isc-dhcp-server
 sudo chattr +i /etc/resolv.conf
