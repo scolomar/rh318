@@ -2,15 +2,15 @@
 ; BIND data file for local loopback interface
 ;
 $TTL    604800
-@       IN      SOA     dns.example.net. root.dns.example.net. (
+@       IN      SOA     gw.example.net. root.gw.example.net. (
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-        IN      NS      dns.example.net.
-dns     IN      A       192.168.1.10
-manager IN      A       192.168.1.30
-rhvh    IN      A       192.168.1.40
-rehl    IN      A       192.168.1.50
+        IN      NS      gw.example.net.
+gw      IN      A       192.168.2.10
+rhvm    IN      A       192.168.2.30
+rhvh    IN      A       192.168.2.40
+rehl    IN      A       192.168.2.50
