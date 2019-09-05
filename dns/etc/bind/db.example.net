@@ -12,5 +12,5 @@ $TTL    604800
         IN      NS      dns.example.net.
 dns     IN      A       192.168.1.10
 manager IN      A       192.168.1.30
-host1   IN      A       192.168.1.40
-host2   IN      A       192.168.1.50
+rhvh    IN      A       192.168.1.40
+rehl    IN      A       192.168.1.50
