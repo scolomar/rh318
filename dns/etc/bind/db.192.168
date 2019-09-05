@@ -12,5 +12,5 @@ $TTL    604800
         IN      NS      dns.example.net.
 10.1    IN      PTR     dns.example.net.
 30.1    IN      PTR     manager.example.net.
-40.1    IN      PTR     host1.example.net.
-50.1    IN      PTR     host2.example.net.
+40.1    IN      PTR     rhvh.example.net.
+50.1    IN      PTR     rhel.example.net.
