@@ -8,6 +8,9 @@ rhvh_2=10.135.197.40 && sudo firewall-cmd --zone="external" --add-forward-port=p
 sudo yum install -y bind bind-utils && sudo systemctl enable named
 echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
 echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+sudo groupadd kvm -g 36 && sudo useradd vdsm -u 36 -g 36 && sudo systemctl enable nfs-server
+mkdir -p /VM_Export/DEV_NFS/{data,export,iso} && chown -R 36:36 /VM_Export/DEV_NFS/{data,export,iso} && chmod 0755 /VM_Export/DEV_NFS/{data,export,iso}
+mkdir -p /VM_Export/PROD_NFS/{data,export,iso} && chown -R 36:36 /VM_Export/PROD_NFS/{data,export,iso} && chmod 0755 /VM_Export/PROD_NFS/{data,export,iso}
 git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/gw && sudo cp -rv * /
 sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 sudo init 6
