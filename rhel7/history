@@ -2,7 +2,9 @@ ip a
 # sudo ifup eth0
 ssh-keygen
 cat .ssh/id_rsa
+# COPY THE PRIVATE KEY TO A SAFE LOCATION
 cat .ssh/id_rsa.pub
+# COPY THE PUBLIC KEY TO A SAFE LOCATION
 rm .ssh/id_rsa
 mv .ssh/id_rsa.pub .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
