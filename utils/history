@@ -1,0 +1,3 @@
+sudo yum update -y
+sudo yum install -y firewalld && sudo systemctl enable firewalld && sudo systemctl start firewalld
+sudo yum install -y bind bind-utils
