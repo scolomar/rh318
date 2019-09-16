@@ -1,0 +1,3 @@
+/VM_Export/PROD_NFS/data *(rw)
+/VM_Export/PROD_NFS/iso *(rw)
+/VM_Export/PROD_NFS/export *(rw)
