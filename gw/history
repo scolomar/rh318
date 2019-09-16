@@ -2,5 +2,7 @@ sudo yum update -y
 sudo yum install -y git
 sudo yum install -y firewalld && sudo systemctl enable firewalld
 sudo yum install -y bind bind-utils && sudo systemctl enable named
+echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
 git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/gw && sudo cp -r * /
 sudo init 6
