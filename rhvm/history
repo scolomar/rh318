@@ -1,0 +1,13 @@
+sudo yum install -y git
+sudo yum install -y firewalld && sudo systemctl enable firewalld
+# PUT THE ACTUAL IP ADDRESS FOR THE DNS
+echo DNS1=10.135.253.169 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
+sudo yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm -y && sudo yum update -y 
+sudo yum install ovirt-engine -y
+sudo init 6
+
+sudo engine-setup
+
+#hostname=rhvm && git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/$hostname && sudo cp -rv * /
