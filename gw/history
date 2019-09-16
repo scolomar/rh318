@@ -1,12 +1,1 @@
-sudo yum install -y firewalld && sudo systemctl enable firewalld && sudo systemctl start firewalld
-sudo yum install -y bind bind-utils dhcp && sudo systemctl enable dhcpd named && sudo firewall-cmd --add-service=dhcp --add-service=dns --zone=internal --permanent&& sudo firewall-cmd --change-interface=ens33 --zone=internal --permanent && sudo firewall-cmd --change-interface=ens32 --zone=external --permanent&& sudo firewall-cmd --reload
-ip_rhvm=192.168.2.30
-ip_rhvh=192.168.2.40
-sudo firewall-cmd --zone="external" --add-forward-port=port=443:proto=tcp:toport=443:toaddr=$ip_rhvm --permanent
-sudo firewall-cmd --zone="external" --add-forward-port=port=9090:proto=tcp:toport=9090:toaddr=$ip_rhvh --permanent
-sudo firewall-cmd --reload
-#sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-#sudo apt-get install --yes bind9 isc-dhcp-server
-#sudo sysctl net.ipv4.ip_forward=1 && sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE && sudo iptables -t nat -A PREROUTING -p tcp -m tcp --dport 443  -j DNAT --to-destination 192.168.1.30:443
-#sudo iptables -t nat -A PREROUTING -p tcp -m tcp --dport 9090 -j DNAT --to-destination 192.168.1.40:9090
-#sudo firewall-cmd --change-interface=ens33 --zone=internal --permanent
+sudo subscription-manager register
