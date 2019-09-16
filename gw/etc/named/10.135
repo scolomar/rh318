@@ -1,0 +1,17 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     gw.rhv.do. root.gw.rhv.do. (
+                              1         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+        IN      NS      gw.rhv.do.
+; POPULATE WITH THE ACTUAL PRIVATE IP ADDRESSES
+169.253 IN      PTR     gw.rhv.do.
+230.197 IN      PTR     rhvm.rhv.do.
+18.236  IN      PTR     rhvh-1.rhv.do.
+40.197  IN      PTR     rhvh-2.rhv.do.
