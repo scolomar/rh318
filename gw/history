@@ -4,5 +4,6 @@ sudo yum install -y firewalld && sudo systemctl enable firewalld
 sudo yum install -y bind bind-utils && sudo systemctl enable named
 echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
 echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
-git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/gw && sudo cp -r * /
+git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/gw && sudo cp -rv * /
+sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 sudo init 6
