@@ -11,7 +11,7 @@ $TTL    604800
 ;
         IN      NS      gw.rhv.do.
 ; POPULATE WITH THE ACTUAL PRIVATE IP ADDRESSES
-169.253 IN      PTR     gw.rhv.do.
-230.197 IN      PTR     rhvm.rhv.do.
-18.236  IN      PTR     rhvh-1.rhv.do.
-40.197  IN      PTR     rhvh-2.rhv.do.
+90.192  IN      PTR     gw.rhv.do.
+59.193  IN      PTR     rhvm.rhv.do.
+110.192 IN      PTR     rhvh-1.rhv.do.
+34.193  IN      PTR     rhvh-2.rhv.do.
