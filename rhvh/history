@@ -1,4 +1,4 @@
-gw=10.135.253.169
+gw=10.135.192.90
 #################
 sudo yum install -y git
 sudo yum install -y firewalld && sudo systemctl enable firewalld
