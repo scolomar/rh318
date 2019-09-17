@@ -1,5 +1,5 @@
 gw=10.135.253.169
-
+#################
 sudo yum install -y git
 sudo yum install -y firewalld && sudo systemctl enable firewalld
 echo DNS1=$gw | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
