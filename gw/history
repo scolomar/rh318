@@ -1,3 +1,7 @@
 sudo sed -i s/rhel7/gw/ /etc/hostname && sudo init 6
 sudo subscription-manager register
 sudo subscription-manager list --available
+sudo subscription-manager list --available | grep "Subscription Name"
+sudo subscription-manager list --available | grep "Pool ID"
+sudo subscription-manager attach --pool=8xxxxxxxxxxxxxxxxxxxxxxxxxx
+sudo subscription-manager repos --enable=rhel-7-server-rpms
