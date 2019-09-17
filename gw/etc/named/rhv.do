@@ -11,7 +11,7 @@ $TTL    604800
 ;
         IN      NS      gw.rhv.do.
 ; POPULATE WITH THE ACTUAL PRIVATE IP ADDRESSES
-gw      IN      A       10.135.253.169
-rhvm    IN      A       10.135.197.230
-rhvh-1  IN      A       10.135.236.18
-rhvh-2  IN      A       10.135.197.40
+gw      IN      A       10.135.192.90
+rhvm    IN      A       10.135.193.59
+rhvh-1  IN      A       10.135.192.110
+rhvh-2  IN      A       10.135.193.34
