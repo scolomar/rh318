@@ -2,15 +2,16 @@
 ; BIND data file for local loopback interface
 ;
 $TTL    604800
-@       IN      SOA     gw.example.net. root.gw.example.net. (
+@       IN      SOA     gw.rhv.do. root.gw.rhv.do. (
                               2         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-        IN      NS      gw.example.net.
-gw      IN      A       192.168.2.10
-rhvm    IN      A       192.168.2.30
-rhvh    IN      A       192.168.2.40
-rhel    IN      A       192.168.2.50
+        IN      NS      gw.rhv.do.
+; POPULATE WITH THE ACTUAL PRIVATE IP ADDRESSES
+gw      IN      A       10.135.253.169
+rhvm    IN      A       10.135.197.230
+rhvh-1  IN      A       10.135.236.18
+rhvh-2  IN      A       10.135.197.40
