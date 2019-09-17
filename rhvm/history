@@ -1,14 +1,21 @@
+hostname=rhvm
 gw=10.135.192.90
+internal=eth1
+domain=rhv.do
+branch=digitalocean
+username=secobau
+repo=rh318
+package=ovirt-engine
+repo_url=http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm
 #################
+sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 sudo yum install -y git
 sudo yum install -y firewalld && sudo systemctl enable firewalld
-# PUT THE ACTUAL IP ADDRESS FOR THE DNS
-echo DNS1=$gw | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
-echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
-sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
-sudo yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm -y && sudo yum update -y 
-sudo yum install ovirt-engine -y
-hostname=rhvm && git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/$hostname && sudo cp -rv * /
+echo DNS1=$gw | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
+echo DOMAIN=$domain | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
+sudo yum install $repo_url -y && sudo yum update -y 
+sudo yum install $package -y
+git clone --single-branch --branch $branch https://github.com/$username/$repo && cd $repo/$hostname && sudo cp -rv * /
 sudo init 6
 #################
 sudo engine-setup
