@@ -3,6 +3,11 @@ rhvh_1=10.135.192.110
 rhvh_2=10.135.193.34
 internal=eth1
 domain=rhv.do
+dev_nfs_path=/VM_Export/DEV_NFS
+prod_nfs_path=/VM_Export/PROD_NFS
+branch=digitalocean
+repo=rh318
+username=secobau
 ####################
 sudo yum update -y
 sudo yum install -y git
@@ -15,8 +20,8 @@ sudo yum install -y bind bind-utils && sudo systemctl enable named && sudo firew
 echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
 echo DOMAIN=$domain | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
 sudo groupadd kvm -g 36 && sudo useradd vdsm -u 36 -g 36 && sudo systemctl enable nfs-server && sudo firewall-cmd --add-service=nfs --add-service=mountd --add-service=rpc-bind --zone=internal --permanent
-sudo mkdir -p /VM_Export/DEV_NFS/{data,export,iso} && sudo chown -R 36:36 /VM_Export/DEV_NFS/{data,export,iso} && sudo chmod 0755 /VM_Export/DEV_NFS/{data,export,iso}
-sudo mkdir -p /VM_Export/PROD_NFS/{data,export,iso} && sudo chown -R 36:36 /VM_Export/PROD_NFS/{data,export,iso} && sudo chmod 0755 /VM_Export/PROD_NFS/{data,export,iso}
-git clone --single-branch --branch digitalocean https://github.com/secobau/rh318 && cd rh318/gw && sudo cp -rv * /
+sudo mkdir -p $dev_nfs_path/{data,export,iso} && sudo chown -R 36:36 $dev_nfs_path/{data,export,iso} && sudo chmod 0755 $dev_nfs_path/{data,export,iso}
+sudo mkdir -p $prod_nfs_path/{data,export,iso} && sudo chown -R 36:36 $prod_nfs_path/{data,export,iso} && sudo chmod 0755 $prod_nfs_path/{data,export,iso}
+git clone --single-branch --branch $branch https://github.com/$username/$repo && cd $repo/gw && sudo cp -rv * /
 sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 sudo init 6
