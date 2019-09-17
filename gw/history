@@ -7,8 +7,8 @@ sudo yum install -y git
 sudo yum install -y firewalld && sudo systemctl enable firewalld && sudo systemctl start firewalld && sudo firewall-cmd --change-interface=eth1 --zone=internal --permanent && sudo firewall-cmd --change-interface=eth0 --zone=external --permanent && sudo firewall-cmd --reload
 sudo firewall-cmd --zone="external" --add-forward-port=port=80:proto=tcp:toport=80:toaddr=$rhvm --permanent
 sudo firewall-cmd --zone="external" --add-forward-port=port=443:proto=tcp:toport=443:toaddr=$rhvm --permanent
-sudo firewall-cmd --zone="external" --add-forward-port=port=9090:proto=tcp:toport=9090:toaddr=$rhvh_1 --permanent
-sudo firewall-cmd --zone="external" --add-forward-port=port=9090:proto=tcp:toport=9090:toaddr=$rhvh_2 --permanent
+sudo firewall-cmd --zone="external" --add-forward-port=port=9091:proto=tcp:toport=9090:toaddr=$rhvh_1 --permanent
+sudo firewall-cmd --zone="external" --add-forward-port=port=9092:proto=tcp:toport=9090:toaddr=$rhvh_2 --permanent
 sudo yum install -y bind bind-utils && sudo systemctl enable named && sudo firewall-cmd --add-service=dns --zone=internal --permanent
 echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
 echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
