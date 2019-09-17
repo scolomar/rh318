@@ -1,0 +1,12 @@
+gw=10.135.253.169
+
+sudo yum install -y git
+sudo yum install -y firewalld && sudo systemctl enable firewalld
+echo DNS1=$gw | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
+sudo yum install http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm -y && sudo yum update -y
+sudo yum install ovirt-host -y
+hostname=rhvh && git clone --single-branch --branch DO https://github.com/secobau/rh318 && cd rh318/$hostname && sudo cp -rv * /
+sudo init 6
+
