@@ -1,9 +1,0 @@
-zone "rhv.do" {
-        type master;
-        file "/etc/named/rhv.do";
-};
-
-zone "135.10.in-addr.arpa" {
-        type master;
-        file "/etc/named/10.135";
-};
