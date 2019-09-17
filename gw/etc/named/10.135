@@ -15,4 +15,3 @@ $TTL    604800
 230.197 IN      PTR     rhvm.rhv.do.
 18.236  IN      PTR     rhvh-1.rhv.do.
 40.197  IN      PTR     rhvh-2.rhv.do.
-61.209  IN      PTR     utils.rhv.do.
