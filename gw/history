@@ -1,2 +1,3 @@
 sudo sed -i s/rhel7/gw/ /etc/hostname && sudo init 6
 sudo subscription-manager register
+sudo subscription-manager list --available
