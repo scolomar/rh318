@@ -1,6 +1,8 @@
 rhvm=10.135.193.59
 rhvh_1=10.135.192.110
 rhvh_2=10.135.193.34
+internal=eth1
+domain=rhv.do
 ####################
 sudo yum update -y
 sudo yum install -y git
@@ -10,8 +12,8 @@ sudo firewall-cmd --zone="external" --add-forward-port=port=443:proto=tcp:toport
 sudo firewall-cmd --zone="external" --add-forward-port=port=9091:proto=tcp:toport=9090:toaddr=$rhvh_1 --permanent
 sudo firewall-cmd --zone="external" --add-forward-port=port=9092:proto=tcp:toport=9090:toaddr=$rhvh_2 --permanent
 sudo yum install -y bind bind-utils && sudo systemctl enable named && sudo firewall-cmd --add-service=dns --zone=internal --permanent
-echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
-echo DOMAIN=rhv.do | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-eth1
+echo DNS1=127.0.0.1 | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
+echo DOMAIN=$domain | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
 sudo groupadd kvm -g 36 && sudo useradd vdsm -u 36 -g 36 && sudo systemctl enable nfs-server && sudo firewall-cmd --add-service=nfs --add-service=mountd --add-service=rpc-bind --zone=internal --permanent
 sudo mkdir -p /VM_Export/DEV_NFS/{data,export,iso} && sudo chown -R 36:36 /VM_Export/DEV_NFS/{data,export,iso} && sudo chmod 0755 /VM_Export/DEV_NFS/{data,export,iso}
 sudo mkdir -p /VM_Export/PROD_NFS/{data,export,iso} && sudo chown -R 36:36 /VM_Export/PROD_NFS/{data,export,iso} && sudo chmod 0755 /VM_Export/PROD_NFS/{data,export,iso}
