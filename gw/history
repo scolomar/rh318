@@ -6,10 +6,10 @@ username=secobau
 hostname=gw
 internal=eth1
 domain=rhv.do
-dev_nfs_path=/VM_Export/DEV_NFS
-prod_nfs_path=/VM_Export/PROD_NFS
 branch=digitalocean
 repo=rh318
+dev_nfs_path=/VM_Export/DEV_NFS
+prod_nfs_path=/VM_Export/PROD_NFS
 ####################
 sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 sudo yum update -y
