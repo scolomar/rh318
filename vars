@@ -1,8 +1,4 @@
 ####################
-repo=rh318
-username=secobau
-branch=digitalocean
-####################
 internal=eth1
 hostnames=" GW RHVM RHVH-1 RHVH-2 "
 ####################
