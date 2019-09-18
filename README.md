@@ -6,8 +6,8 @@ Configuration for Digital Ocean (digitalocean branch)
 Installation steps:
 ```bash
 #############################################################################################
-repo=rh318
-username=secobau
+repo=rh318        # FIRST FORK MY REPO IN YOUR OWN GITHUB ACCOUNT
+username=secobau  # PUT HERE YOUR USERNAME IN GITHUB
 branch=digitalocean
 sudo yum update -y && sudo yum install -y git
 rm -rf $repo && git clone --single-branch --branch $branch https://github.com/$username/$repo
