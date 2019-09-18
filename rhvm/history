@@ -14,8 +14,7 @@ sudo yum install -y git
 sudo yum install -y firewalld && sudo systemctl enable firewalld
 echo DNS1=$gw | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
 echo DOMAIN=$domain | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
-sudo yum install $url_package -y && sudo yum update -y 
-sudo yum install $package -y
+sudo yum install $url_package -y && sudo yum update -y && sudo yum install $package -y
 git clone --single-branch --branch $branch https://github.com/$username/$repo && cd $repo/$hostname && sudo cp -rv * /
 sudo init 6
 #################
