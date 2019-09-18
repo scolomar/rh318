@@ -1,7 +1,8 @@
-hostname=rhvh
 gw=10.135.192.90
-domain=rhv.do
+################
+hostname=rhvh
 internal=eth1
+domain=rhv.do
 branch=digitalocean
 username=secobau
 repo=rh318
