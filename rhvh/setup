@@ -1,7 +1,8 @@
 ####################
-package=ovirt-host
+package=" ovirt-host cockpit "
 ####################
 sudo yum install $url_package -y && sudo yum update -y && sudo yum install $package -y
+sudo systemctl enable cockpit.socket && sudo systemctl start cockpit && sudo firewall-cmd --add-service=cockpit --permanent && sudo firewall-cmd --reload
 ####################
 dns=$( awk /^GW/'{ print $3 }' network/$username )
 domain=$( awk /GW/'{ print $1 }' network/$username | cut -d. -f2,3 )
