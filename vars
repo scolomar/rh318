@@ -1,0 +1,13 @@
+####################
+repo=rh318
+username=secobau
+branch=digitalocean
+####################
+internal=eth1
+hostnames=" GW RHVM RHVH-1 RHVH-2 "
+####################
+url_package=http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm
+####################
+dev_nfs_path=/VM_Export/DEV_NFS
+prod_nfs_path=/VM_Export/PROD_NFS
+####################
