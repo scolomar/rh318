@@ -1,0 +1,13 @@
+####################
+package=ovirt-engine
+####################
+sudo yum install $url_package -y && sudo yum update -y && sudo yum install $package -y
+####################
+dns=$( awk /^GW/'{ print $3 }' network/$username )
+echo -e "DNS1=$dns\nDOMAIN=$domain" | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
+####################
+sudo init 6
+####################
+sudo engine-setup
+####################
+
