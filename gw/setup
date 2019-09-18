@@ -30,5 +30,8 @@ sed -i s/ARPA/$arpa/g gw/etc/named/*
 cd gw && sudo cp -rv * / && cd -
 echo -e "DNS1=$dns\nDOMAIN=$domain" | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
 ####################
+cd / && sudo curl -o .gitignore https://raw.githubusercontent.com/secobau/linux/master/Scripts/rootfs.gitignore
+cd / && sudo git init && sudo git add --all . && sudo git commit -m "Initial commit"
+####################
 sudo init 6
 ####################
