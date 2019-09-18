@@ -1,0 +1,4 @@
+####################
+sudo yum remove -y do-agent && curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
+sudo yum install -y firewalld && sudo systemctl enable firewalld
+####################
