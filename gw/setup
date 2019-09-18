@@ -1,0 +1,34 @@
+####################
+dns=127.0.0.1
+####################
+sudo systemctl start firewalld && sudo firewall-cmd --change-interface=eth1 --zone=internal --permanent && sudo firewall-cmd --change-interface=eth0 --zone=external --permanent && sudo firewall-cmd --reload
+sudo yum install -y bind bind-utils && sudo systemctl enable named && sudo firewall-cmd --add-service=dns --zone=internal --permanent
+####################
+sudo systemctl enable nfs-server && sudo firewall-cmd --add-service=nfs --add-service=mountd --add-service=rpc-bind --zone=internal --permanent
+sudo groupadd kvm -g 36 && sudo useradd vdsm -u 36 -g 36
+sudo mkdir -p $dev_nfs_path/{data,export,iso} && sudo chown -R 36:36 $dev_nfs_path/{data,export,iso} && sudo chmod 0755 $dev_nfs_path/{data,export,iso}
+sudo mkdir -p $prod_nfs_path/{data,export,iso} && sudo chown -R 36:36 $prod_nfs_path/{data,export,iso} && sudo chmod 0755 $prod_nfs_path/{data,export,iso}
+####################
+for hostname in $hostnames
+ do
+  fqdn=$( awk /$hostname/'{ print $1 }' network/$username )
+  ip=$( awk /$hostname/'{ print $3 }' network/$username )
+  last=$( echo $ip | cut -d. -f4,3,2 )
+  echo -e "$hostname IN A $ip" 1>> gw/etc/named/domain
+  echo -e "$last IN PTR $fqdn." 1>> gw/etc/named/arpa
+  test $hostname == RHVM && for port in 80 443
+   do sudo firewall-cmd --zone="external" --add-forward-port=port=$port:proto=tcp:toport=$port:toaddr=$ip --permanent
+   done
+  test $hostname == RHVH-1 && sudo firewall-cmd --zone="external" --add-forward-port=port=9091:proto=tcp:toport=9090:toaddr=$ip --permanent
+  test $hostname == RHVH-2 && sudo firewall-cmd --zone="external" --add-forward-port=port=9092:proto=tcp:toport=9090:toaddr=$ip --permanent
+ done
+domain=$( echo $fqdn | cut -d. -f2,3 )
+arpa=$( echo $ip | cut -d. -f1 )
+sed -i s/DOMAIN/$domain/g gw/etc/named/*
+sed -i s/ARPA/$arpa/g gw/etc/named/*
+####################
+cd gw && sudo cp -rv * / && cd -
+echo -e "DNS1=$dns\nDOMAIN=$domain" | sudo tee -a /etc/sysconfig/network-scripts/ifcfg-$internal
+####################
+sudo init 6
+####################
