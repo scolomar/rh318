@@ -1,4 +1,4 @@
 # BACKUP
-engine-backup --scope=all --mode=backup --file=BACKUP-full.tgz --log=BACKUP-full.log
+engine-backup --scope=all --mode=backup --file=BACKUP-full-$(date +%F).tgz --log=BACKUP-full-$(date +%F).log
 
 # RESTORE
