@@ -1,6 +1,6 @@
 ####################
 internal=eth1
-hostnames=" GW RHVM RHVH-1 RHVH-2 "
+hostnames=" GW RHVM RHVH1 RHVH2 "
 ####################
 url_package=http://resources.ovirt.org/pub/yum-repo/ovirt-release42.rpm
 ####################
