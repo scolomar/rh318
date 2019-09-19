@@ -1,0 +1,4 @@
+# BACKUP
+engine-backup --scope=all --mode=backup --file=BACKUP-full.tgz --log=BACKUP-full.log
+
+# RESTORE
