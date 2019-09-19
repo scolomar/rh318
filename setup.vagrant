@@ -1,0 +1,2 @@
+vagrant up --parallel
+for username in $(ls network/);do rm network/$username;for host in $(grep $username list);do echo  $host $(vagrant ssh $host -c "ip a|awk /inet.*'\/'20.*eth0/'{print \$2}'|cut -d/ -f1" 2>/dev/null|strings|awk '{print $1}') $(vagrant ssh $host -c "ip a|awk /inet.*eth1/'{print \$2}'|cut -d/ -f1" 2>/dev/null|strings|awk '{print $1}') >> network/$username;done;done
