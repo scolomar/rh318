@@ -1,2 +1,9 @@
+#!/bin/bash -x
 vagrant up --parallel
+for x in $(cat list);do vagrant ssh $x -c "echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx16jljjqKrzweB4BgJIGSGVvBkuidttGQUNn0SVWKsdEFK5frQg+gZ/bIKbQ0FeuTSxpuavD/mXSCQZFW2b5fiNVIxf3ZZEU/BtCBxGpF0wxsxwENDiC/7Tvh5EF1rHgKWj/p4HyUI0xoPx0WqR+yCyZG4ulNiy/Y5lJVW66jMb4MxmwHQtSaWTnDXYhgrm5sa43qj6Pf5mpuDrc1dkiDCLCln/trksixeM4qd9bdN8DRqzlgnZ07eCzqOmvk6XyHllDIFn450ODyD492DiC0SC2C5Z3H2JcXlynY2h3qmB/7SqweI1+kikwOf0oK4/nzER9omUr8MfJr5BB3OWip >> .ssh/authorized_keys";done
+for x in $(cat list);do vagrant ssh $x -c "echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx16jljjqKrzweB4BgJIGSGVvBkuidttGQUNn0SVWKsdEFK5frQg+gZ/bIKbQ0FeuTSxpuavD/mXSCQZFW2b5fiNVIxf3ZZEU/BtCBxGpF0wxsxwENDiC/7Tvh5EF1rHgKWj/p4HyUI0xoPx0WqR+yCyZG4ulNiy/Y5lJVW66jMb4MxmwHQtSaWTnDXYhgrm5sa43qj6Pf5mpuDrc1dkiDCLCln/trksixeM4qd9bdN8DRqzlgnZ07eCzqOmvk6XyHllDIFn450ODyD492DiC0SC2C5Z3H2JcXlynY2h3qmB/7SqweI1+kikwOf0oK4/nzER9omUr8MfJr5BB3OWip >> /home/centos/.ssh/authorized_keys";done
 for username in $(ls network/);do rm network/$username;for host in $(grep $username list);do echo  $host $(vagrant ssh $host -c "ip a|awk /inet.*'\/'20.*eth0/'{print \$2}'|cut -d/ -f1" 2>/dev/null|strings|awk '{print $1}') $(vagrant ssh $host -c "ip a|awk /inet.*eth1/'{print \$2}'|cut -d/ -f1" 2>/dev/null|strings|awk '{print $1}') >> network/$username;done;done
+for username in $(ls network/);do for host in gw rhvm rhvh1 rhvh2;do vagrant scp setup.$host $host.$username.do:setup;done;done
+for username in $(ls network/);do for host in gw rhvm rhvh1 rhvh2;do vagrant ssh $host.$username.do -c "sed -i s/secobau/$username/ setup";done;done
+for username in $(ls network/);do for host in gw rhvm rhvh1 rhvh2;do vagrant ssh $host.$username.do -c "chmod +x setup";done;done
+for username in $(ls network/);do for host in gw rhvm rhvh1 rhvh2;do vagrant ssh $host.$username.do -c "sed -i /secobau/$username/ setup && chmod +x setup && ./setup";done;done
